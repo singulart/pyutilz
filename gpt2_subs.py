@@ -6,8 +6,16 @@ import re
 import sys
 import chardet
 
+EOS = 'EOS'
+BOS = 'BOS'
+
 
 def srt_to_gpt2(argv):
+    if argv[0] == 'validate':
+        with open(argv[1], 'r', encoding='UTF-8') as inp:
+            detect_mismatches("".join(inp.readlines()))
+            return 0
+
     with open(argv[0], 'rb') as inp:
         content = inp.read()
         encoding = chardet.detect(content)['encoding']
@@ -23,6 +31,26 @@ def srt_to_gpt2(argv):
         content = re.sub(r'([.?!])\n', '\g<1><EOS>', content, flags=re.MULTILINE)
         with open(argv[1], 'w', encoding='utf-8') as out:
             out.write(content)
+
+        detect_mismatches(content)
+
+
+def detect_mismatches(content):
+    unmatched = 0
+    token = EOS
+    for m in re.finditer(r'([BE]OS)', content):
+        if token == BOS and m.group(1) != EOS:
+            unmatched += 1
+            print(content[m.start() - 20: m.end() + 20:])
+        elif token == EOS and m.group(1) != BOS:
+            unmatched += 1
+            print(content[m.start() - 20: m.end() + 20:])
+        else:
+            if token == BOS:
+                token = EOS
+            else:
+                token = BOS
+    print('Unmatched BOS/EOS pairs {}'.format(unmatched))
 
 
 if __name__ == '__main__':
