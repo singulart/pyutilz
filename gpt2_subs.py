@@ -10,7 +10,6 @@ import chardet
 def srt_to_gpt2(argv):
     with open(argv[0], 'rb') as inp:
         content = inp.read()
-        # content = inp.readline()
         encoding = chardet.detect(content)['encoding']
         content = content.decode(encoding)
         content = re.sub(r'\r\n', '\n', content, flags=re.MULTILINE)  # removes empty lines
