@@ -23,12 +23,13 @@ def srt_to_gpt2(argv):
         content = re.sub(r'\r\n', '\n', content, flags=re.MULTILINE)  # removes empty lines
         content = re.sub(r'[0-9]{2}:.*\n', '', content, flags=re.MULTILINE)  # removes time codes 00:09:34,400
         content = re.sub(r'^[0-9]+\n', '', content, flags=re.MULTILINE)  # removes line with just numbers
+        content = re.sub(r'(\n)\.\s*', '\g<1>', content, flags=re.MULTILINE)  # removes leading dot symbol and all subsequent whitespaces
         content = re.sub(r'<i>', '', content, flags=re.MULTILINE)
         content = re.sub(r'</i>', '', content, flags=re.MULTILINE)
         # Line starting with capital letter is considered beginning of sentence
-        content = re.sub(r'^([А-Я]|-)', '<BOS>\g<1>', content, flags=re.MULTILINE)
-        # Line ending with '.' or '?' or '!' is considered end of sentence
-        content = re.sub(r'([.?!])\n', '\g<1><EOS>', content, flags=re.MULTILINE)
+        #content = re.sub(r'^([А-Я]|-)', '<BOS>\g<1>', content, flags=re.MULTILINE)
+        # Line ending with '.' or '?' or '!' is considered end of sentence (but not trailing '...')
+        content = re.sub(r'([.?!]\n)(?<!([.]{3}\n))', '\g<1><EOS>\n<BOS>', content, flags=re.MULTILINE)
         with open(argv[1], 'w', encoding='utf-8') as out:
             out.write(content)
 
