@@ -42,10 +42,10 @@ def detect_mismatches(content):
     for m in re.finditer(r'([BE]OS)', content):
         if token == BOS and m.group(1) != EOS:
             unmatched += 1
-            print(content[m.start() - 20: m.end() + 20:])
+            print('>{}~~~>{}<~~~<'.format(unmatched, content[m.start() - 20: m.end() + 20:]))
         elif token == EOS and m.group(1) != BOS:
             unmatched += 1
-            print(content[m.start() - 20: m.end() + 20:])
+            print('>{}~~~>{}<~~~<'.format(unmatched, content[m.start() - 20: m.end() + 20:]))
         else:
             if token == BOS:
                 token = EOS
