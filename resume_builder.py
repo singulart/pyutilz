@@ -77,7 +77,7 @@ cv_json = {
         "linkedin": "https://www.linkedin.com/in/johndoe",
         "website": "https://johndoe.dev"
     },
-    "summary": "Experienced AWS Solutions Architect with 10+ years of expertise in cloud migrations, security, and infrastructure automation. Passionate about helping businesses scale efficiently using modern cloud technologies.",
+    "summary": "<INSERT SUMMARY>",
     "work_experience": [
         {
         "company": "Argorand Inc.",
@@ -86,9 +86,6 @@ cv_json = {
         "start_date": "2024-01-01",
         "end_date": None,
         "description": [
-                "Leading a cloud consulting firm specializing in AWS migration and implementation services for FinTech SMEs and federal government clients.",
-                "Leading a cloud consulting firm specializing in AWS migration and implementation services for FinTech SMEs and federal government clients.",
-                "Leading a cloud consulting firm specializing in AWS migration and implementation services for FinTech SMEs and federal government clients."
         ]
         },
         {
@@ -98,9 +95,6 @@ cv_json = {
         "start_date": "2022-03-01",
         "end_date": "2023-12-31",
         "description": [
-            "Designed and implemented AWS cloud solutions for enterprise clients, optimizing performance and reducing costs by 30%.",
-            "Designed and implemented AWS cloud solutions for enterprise clients, optimizing performance and reducing costs by 30%.",
-            "Designed and implemented AWS cloud solutions for enterprise clients, optimizing performance and reducing costs by 30%.",
         ]
         },
     {
@@ -110,7 +104,6 @@ cv_json = {
       "start_date": "2019-06-01",
       "end_date": "2022-02-28",
       "description": [
-        "Managed cloud migrations for federal agencies, ensuring compliance with FedRAMP and security best practices."
       ]
     }
     ],
@@ -134,15 +127,6 @@ cv_json = {
     ],   
   
   "skills": [
-    "AWS Cloud Architecture",
-    "Infrastructure as Code (IaC)",
-    "Terraform",
-    "Kubernetes",
-    "Serverless Computing",
-    "Cloud Security",
-    "DevOps",
-    "Python",
-    "CI/CD Pipelines"
   ]
 }
 
